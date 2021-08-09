@@ -9,12 +9,12 @@ class Block {
         this.previousHash = previousHash;
         this.timeStamp = timeStamp;
         this.hash = this.calculateHash();
-
+        this.nonce = 0
     }
 
 
     calculateHash() {
-        return SHA256(this.previousHash + this.timeStamp + this.data).toString();
+        return SHA256(this.previousHash + this.timeStamp + this.data + this.nonce).toString();
     }
 
 
