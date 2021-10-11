@@ -1,0 +1,26 @@
+
+
+coinbase transaction 
+it's a part of our fundamental block 
+
+what does a cb do?
+it tells us how much money the miner who successfully solves the block should receive 
+
+when does the miner get their reward for mining the block?
+in bitcoin, in ethereum, and in the Anders demo it's when the block is mined. (not in the next 
+block, that's just in our implementation). That's why it would be useful to try to change our 
+demo to that way
+
+
+hw-
+try and change our demo to be more like the bitcoin
+since i'm better at notes, organize my thoughts and notes here into a readme. modeld on the comma ai one 
+
+
+
+
+vocab 
+-a block is hashed when first added 
+
+-if we don't have the nonce, we can't have proof of work. And PoW is necessary for trustless security, the whole reason for the blockchain.
+

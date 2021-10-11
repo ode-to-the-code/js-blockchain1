@@ -28,7 +28,7 @@ class Block {
 
 
     mineBlock(difficulty){
-        while(this.hashDifficultyMatch(difficulty)){
+        while(this.hashDifficultyDoesNotMatch(difficulty)){
             this.nonce++;
             this.hash = this.calculateHash();
         }
@@ -36,7 +36,7 @@ class Block {
     }
 
 
-    hashDifficultyMatch(difficulty){
+    hashDifficultyDoesNotMatch(difficulty){
         return this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0");
     } 
 // difficulty = 2
@@ -45,6 +45,9 @@ class Block {
 //indexes:  0 1 2
 }
 
+
+
+
 class Transaction {
     constructor(fromAddress, toAddress, amount){
         this.fromAddress = fromAddress;
@@ -52,6 +55,9 @@ class Transaction {
         this.amount = amount;
     }
 }
+
+
+
 
 class Blockchain {
     constructor() {
@@ -101,7 +107,7 @@ class Blockchain {
         this.pendingTransactions.push(transaction)
     }
 
-    minePendingTransactions(mineRewardAddress){
+    minePendingTransactions(miningRewardAddress){
         // creating the new block with the current pending transactions
         let newBlock = new Block(this.pendingTransactions, Date.now()); 
         // linking the block, mining it, then adding it to the blockchain
@@ -160,11 +166,14 @@ class Blockchain {
 
 let jadCoin = new Blockchain();
 
-console.log("Mining block one...");
-jadCoin.addBlock(new Block("1", "06-02-2021"));
+console.log("creating transactions");
+jadCoin.createTransaction(new Transaction("1Address", "2Address", 100));
+jadCoin.createTransaction(new Transaction("2Address", "1Address", 20));
 
-console.log("Mining block two...");
-jadCoin.addBlock(new Block("2", "08-04-2021"));
+console.log("starting the miner:");
+jadCoin.minePendingTransactions("miner address 1");
+jadCoin.minePendingTransactions("miner address 1");
+console.log(jadCoin.getBalanceOfAddress("miner address 1"));
 
 
 
